@@ -2,7 +2,7 @@ document.getElementById("calcBtn").addEventListener('click', function() {
   var visitaMensal = document.getElementById('inputVisita').value;
   var numeroConversao = document.getElementById('inputConversao').value;
   var ticketMedio = document.getElementById('inputTicket').value;
-  var aumentoTaxa = 1 + 20 / 100;
+  var aumentoTaxa = 20 / 100;
 
   validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
 });
@@ -30,7 +30,7 @@ function validateUrl() {
 function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
   var taxaConversao = Number(numeroConversao) / Number(visitaMensal);
   var faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
-  var novoFaturamentoAnual = visitaMensal * (taxaConversao * aumentoTaxa) * ticketMedio;
+  var novoFaturamentoAnual = visitaMensal * (taxaConversao * (1 + aumentoTaxa)) * ticketMedio;
   var aumentoFaturamento = 12 * (novoFaturamentoAnual * faturamentoMensal);
 
   displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento);
@@ -67,7 +67,7 @@ function createSecondTable(taxaConversao, faturamentoMensal) {
 
   for(i = 0; i < 2; i++) {
     var td = document.createElement('td');
-    if (i === 0 ) td.innerText = taxaConversao + '%';
+    if (i === 0 ) td.innerText = taxaConversao.toFixed(2) + '%';
     if (i === 1 ) td.innerText = accounting.formatMoney(Number(faturamentoMensal), "R$ ", 2, ".", ",");
     tr.appendChild(td);
   }
