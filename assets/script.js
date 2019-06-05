@@ -2,7 +2,7 @@ document.getElementById("calcBtn").addEventListener('click', function() {
   var visitaMensal = document.getElementById('inputVisita').value;
   var numeroConversao = document.getElementById('inputConversao').value;
   var ticketMedio = document.getElementById('inputTicket').value;
-  var aumentoTaxa = 20 / 100;
+  var aumentoTaxa = 1 + 20 / 100;
 
   validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
 });
@@ -30,7 +30,7 @@ function validateUrl() {
 function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
   var taxaConversao = Number(numeroConversao) / Number(visitaMensal);
   var faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
-  var novoFaturamentoAnual = visitaMensal * (taxaConversao + aumentoTaxa) * ticketMedio;
+  var novoFaturamentoAnual = visitaMensal * (taxaConversao * aumentoTaxa) * ticketMedio;
   var aumentoFaturamento = 12 * (novoFaturamentoAnual * faturamentoMensal);
 
   displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento);
