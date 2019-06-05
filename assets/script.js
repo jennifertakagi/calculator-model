@@ -28,7 +28,7 @@ function validateUrl() {
   return false;
 }
 function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
-  var taxaConversao = Number(numeroConversao) / Number(numeroConversao);
+  var taxaConversao = Number(numeroConversao) / Number(visitaMensal);
   var faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
   var novoFaturamentoAnual = visitaMensal * (taxaConversao + aumentoTaxa) * ticketMedio;
   var aumentoFaturamento = 12 * (novoFaturamentoAnual * faturamentoMensal);
