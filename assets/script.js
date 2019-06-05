@@ -1,18 +1,37 @@
 document.getElementById("calcBtn").addEventListener('click', function() {
-  const url = document.getElementById('inputURL').value;
-  const visitaMensal = document.getElementById('inputVisita').value;
-  const numeroConversao = document.getElementById('inputConversao').value;
-  const ticketMedio = document.getElementById('inputTicket').value;
-  const aumentoTaxa = 20 / 100;
+  var visitaMensal = document.getElementById('inputVisita').value;
+  var numeroConversao = document.getElementById('inputConversao').value;
+  var ticketMedio = document.getElementById('inputTicket').value;
+  var aumentoTaxa = 20 / 100;
 
-  calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
+  validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
 });
 
+function validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
+  if (visitaMensal && numeroConversao && ticketMedio && aumentoTaxa && validateUrl()) {
+    calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
+  } else {
+    var el = document.createElement("p");
+    el.classList.add('alert-text');
+    var textEl = document.createTextNode("Preencha todos os campos para seguir");
+    el.appendChild(textEl);
+    document.getElementsByClassName("box-form")[0].appendChild(el);
+  }
+}
+
+function validateUrl() {
+  var url = document.getElementById('inputURL').value;
+  var regex = /(www.)+\w+.(com)+|(.br)/g;
+  if (url.match(regex)) { 
+    return true;
+  }
+  return false;
+}
 function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
-  const taxaConversao = Number(numeroConversao) / Number(numeroConversao);
-  const faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
-  const novoFaturamentoAnual = visitaMensal * (taxaConversao + aumentoTaxa) * ticketMedio;
-  const aumentoFaturamento = 12 * (novoFaturamentoAnual * faturamentoMensal);
+  var taxaConversao = Number(numeroConversao) / Number(numeroConversao);
+  var faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
+  var novoFaturamentoAnual = visitaMensal * (taxaConversao + aumentoTaxa) * ticketMedio;
+  var aumentoFaturamento = 12 * (novoFaturamentoAnual * faturamentoMensal);
 
   displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento);
 }
@@ -34,8 +53,8 @@ function createFirstTable(visitaMensal, numeroConversao, ticketMedio) {
   for(i = 0; i < 3; i++) {
     var td = document.createElement('td');
     if (i === 0 ) td.innerText = visitaMensal;
-    if (i === 1 ) td.innerText = numeroConversao;
-    if (i === 2 ) td.innerText = 'R$ ' + ticketMedio;
+    if (i === 1 ) td.innerText = accounting.formatMoney(Number(numeroConversao), "R$ ", 2, ".", ",");
+    if (i === 2 ) td.innerText = accounting.formatMoney(Number(ticketMedio), "R$ ", 2, ".", ",");
     tr.appendChild(td);
   }
 
@@ -49,7 +68,7 @@ function createSecondTable(taxaConversao, faturamentoMensal) {
   for(i = 0; i < 2; i++) {
     var td = document.createElement('td');
     if (i === 0 ) td.innerText = taxaConversao + '%';
-    if (i === 1 ) td.innerText = 'R$ ' + faturamentoMensal;
+    if (i === 1 ) td.innerText = accounting.formatMoney(Number(faturamentoMensal), "R$ ", 2, ".", ",");
     tr.appendChild(td);
   }
 
@@ -75,7 +94,7 @@ function createFourthTable(aumentoFaturamento) {
   tr.style.textAlign = 'left';
 
   var td = document.createElement('td');
-  td.innerText = 'R$ ' + aumentoFaturamento.toFixed(2);
+  td.innerText = accounting.formatMoney(Number(aumentoFaturamento), "R$ ", 2, ".", ",");
   tr.appendChild(td);
 
   table.appendChild(tr);

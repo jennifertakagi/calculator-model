@@ -18,6 +18,8 @@ legend { padding-bottom: 5%; text-align: center; }
 
 label { font-weight: 800; }
 
+.alert-text { text-align: center; color: #c11d1d; font-size: 1rem; }
+
 .btn-custom-1 { background-color: #0099a8; color: #fff; }
 
 .btn-custom-1:hover { background-color: #0069a6; color: #fff; }
