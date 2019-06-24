@@ -1,104 +1,74 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/style.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Calculadora ROI</title>
-  </head>
-  <body>
-    <header>
-      <nav class="nav justify-content-center">
-        <img src="./assets/images/logo_branca.png" alt="Logo Dialetto" width="15%" height="20%">
-      </nav>
-    </header>
-    <main class="mb-5" id ="formCard">
-      <section class="row m-0">
-        <div class="col-md-6">
-            <img src="./assets/images/calculator_image.png" alt="Ilustração de calculadora" width="115%">
-          </div>
-          <div class="col-md-6 mx-auto mt-15">
-            <h1>Calculadora de ROI</h1>
-            <p>Bacon ipsum dolor amet corned beef pancetta pork chop meatloaf, 
-              bresaola leberkas shank pig sausage spare ribs cupim capicola ground.
-            </p>
-          </div>
-      </section>
-      <section class="row m-0">
-        <div class="col-md-8 card box-form">
-          <legend>Use a calculadora abaixo para descobrir o possível 
-            retorno financeiro que a Otimização de Conversão da Dialetto 
-            trará para você:
-          </legend>
-          <div class="form-group">
-              <label for="inputURL">Qual é a URL do seu site?</label>
-              <input type="text" class="form-control" id="inputURL" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="inputVisita">Em média, quantas visitas seu site recebe mensalmente?</label>
-              <input type="number" class="form-control" id="inputVisita" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="inputConversao">Quantas conversões (vendas, leads, etc.) seu site gera mensalmente?</label>
-              <input type="number" class="form-control" id="inputConversao" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="inputTicket">Qual seu Ticket Médio (seu faturamento ou Lifetime Value por conversão)?</label>
-                <input type="number" class="form-control" id="inputTicket" placeholder="">
-            </div>
-            <button id="calcBtn" type="submit" class="btn btn-lg btn-block btn-custom-1">Calcular</button>
-        </div>
-      </section>
-    </main>
-    <main class="m-5 d-none" id ="resultCard">
-      <div class="col-md-6 offset-md-3">
-        <h2 class="text-center mb-5">
-          Esses são os resultados financeiros que o nosso trabalho de CRO pode gerar para você:
-        </h2>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/style.css">
+
+  <title>Thanks Page</title>
+</head>
+
+<body onload="init()">
+  <header>
+    <div class="text-center mt-5">
+      <img src="./assets/images/logo_branca.png" alt="Logo Dialetto" width="10%" height="20%">
+    </div>
+    <div class="text-center m-0-7">
+      <h1>Obrigado pelo interesse!</h1>
+      <h2>Entraremos em contato assim que possível.</h2>
+    </div>
+  </header>
+  <main>
+    <section class="row m-0 orange-row">
+      <h3 class="text-row">Escolha os produtos certos para o seu projeto!</h3>
+      <div class="float-right text-center">
+        <a href="#">
+          <button type="button" class="btn btn-primary btn-1">escolher produto</button>
+        </a>
       </div>
-      <section class="card col-md-10 offset-md-1 box-result">
-        <table class="text-center">
-          <tr class="title-color">
-            <td>suas visitas mensais</td>
-            <td>suas conversões mensais</td>
-            <td>seu ticket médio</td>
-          </tr>
-        </table>
-        <table class="text-center mt-5">
-          <tr class="title-color">
-            <td>sua taxa de conversão é de</td>
-            <td>seu faturamento mensal é de</td>
-          </tr>
-        </table>
-        <div class="row mt-5-0">
-          <div class="col-md-6">
-            <img src="./assets/images/result_image.png" alt="Ilustração de calculadora" width="100%">
-          </div>
-          <div class="col-md-6">
-            <table class="text-center">
-                <tr>
-                  <td class="text-results">Se, com o nosso trabalho de CRO, aumentarmos sua taxa de conversão em:</td>
-                </tr>
-              </table>
-              <table class="text-center">
-                  <tr class="mt-2">
-                    <td class="text-results">Você poderá ter um aumento no seu faturamento anual de…</td>
-                  </tr>
-              </table>
-          </div>
+    </section>
+    <section class="container m-5">
+      <h3 class="text-center title-section">ENQUANTO ISSO, CONFIRA TAMBÉM ESTES MATERIAIS:</h3>
+      <div class="row">
+        <div class="col-sm text-center">
+          <img src="">
+          <p class="title-ebook"></p>
+          <p class="subtitle-ebook">Cálculos Modais</p>
+          <p class="text-ebook">Garanta um melhor aproveitamento dos espaços para uma boa eficiência acústica!</p>
+          <a href="#">
+            <button type="button" class="btn btn-primary btn-2">Acessar a planilha</button>
+          </a>
         </div>
-      </section>
-    </main>
-    <footer>
-      <p class="footer-text">© 2019 Dialetto. Todos os direitos reservados.</p>
-    </footer>
-    <script src="./assets/accounting.js"></script>
-		<script src="./assets/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+        <div class="col-sm text-center">
+          <img src="">
+          <p class="title-ebook"></p>
+          <p class="subtitle-ebook">Cálculos Modais</p>
+          <p class="text-ebook">Garanta um melhor aproveitamento dos espaços para uma boa eficiência acústica!</p>
+          <a href="#">
+            <button type="button" class="btn btn-primary btn-2">Acessar a planilha</button>
+          </a>
+        </div>
+        <div class="col-sm text-center">
+          <img src="">
+          <p class="title-ebook"></p>
+          <p class="subtitle-ebook">Cálculos Modais</p>
+          <p class="text-ebook">Garanta um melhor aproveitamento dos espaços para uma boa eficiência acústica!</p>
+          <a href="#">
+            <button type="button" class="btn btn-primary btn-2">Acessar a planilha</button>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p class="footer-text">© 2019 Dialetto. Todos os direitos reservados.</p>
+  </footer>
+  <script src="./assets/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</body>
+
 </html>
