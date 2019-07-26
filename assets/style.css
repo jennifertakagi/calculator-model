@@ -8,83 +8,48 @@ html, body {
   -moz-box-sizing: border-box;
 }
 
-header, footer { 
-  background-color: #0069a6; 
-  background-image: linear-gradient(to right, #0069a6 , #0099a8); 
-  padding: 1% 0; 
-}
+nav, footer { background-color: #0069a6; background-image: linear-gradient(to right, #0069a6 , #0099a8); padding: 1% 0; }
 
-h1, h2{ color: #fff; }
+h1 { color: #0099a8; }
 
-h1 { font-weight: 900; font-size: 3.5rem; }
+.box-form { padding: 5%; margin: -10% auto 5%; }
 
-h2 { font-size: 1.5rem; margin-top: 2%; }
+legend { padding-bottom: 5%; text-align: center; }
 
-.orange-row { background-color: #e6890c; padding: 1% 0; }
+label { font-weight: 800; }
 
-.text-row { 
-  color: #fff; 
-  float: left;
-  width: 70%; 
-  text-align: right; 
-  padding-right: 3%; 
-  font-size: 1.6rem;
-}
+.alert-text { text-align: center; color: #c11d1d; font-size: 1rem; }
 
-.btn-1 { 
-  text-transform: uppercase; 
-  border-radius: 25px; 
-  background-color: #0069a6; 
-  border: none;
-}
+.btn-custom-1 { background-color: #0099a8; color: #fff; }
 
-.title-section {
-  font-weight: 900; 
-  color: #0099a8;
-  font-size: 2.3rem; 
-  margin-bottom: 3%;
-}
+.btn-custom-1:hover { background-color: #0069a6; color: #fff; }
 
-.title-ebook {
-  font-weight: 900;
-  color: #0099a8;
-  font-size: 1.4rem;
-  margin-top: 5%;
-  margin-bottom: 0;
-}
+.box-result { padding: 5%; margin-bottom: 10%; }
 
-.subtitle-ebook {
-  font-weight: 700;
-  color: #0099a8;
-  font-size: 1.2rem;
-  margin: 0;
-}
+td { text-transform: uppercase; font-weight: 900; font-size: 2.5rem; }
 
-.text-ebook {
-  font-size: 1.1rem;
-  color: #000;
-  margin-top: 3%;
-}
+.title-color > td { color:#0099a8; font-weight: 700; font-size: 1.1rem; }
 
-.btn-2 { 
-  text-transform: uppercase; 
-  border-radius: 25px; 
-  background-color: #e6890c; 
-  border: none;
-}
+.text-results { font-size: 1.1rem; text-transform: none; text-align: left; height: 80px;}
 
-footer { width: 100%; bottom: 0; }
+.td-border { border-left: 3px black solid; padding-left: 3%; }
+
+footer { position: fixed; width: 100%; bottom: 0; }
 
 .footer-text { color: #fff; text-align: center; margin: 0; }
 
 /* helpers */
+.mt-15 { margin-top: 15%; }
 
-.mt-5 { margin-top: 5%; }
+.mt--10 { margin-top: -10%; }
 
-.m-0-7 { margin: 7% 0; }
+.mb-5 { margin-bottom: 5%; }
 
 .m-5 { margin: 5%; }
 
+.p-5 { padding: 5%; }
+
+.mt-5-0 { margin: 5% 0 0; }
 
 
 /* #0069a6 azul escuro */

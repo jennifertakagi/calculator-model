@@ -1,66 +1,121 @@
-var data = {
-	"ebooks": [
-		{
-			"title": "PLANILHA",
-			"subtitle": "Cálculos Modais",
-			"text": "Garanta um melhor aproveitamento dos espaços para uma boa eficiência acústica!",
-			"image": "https://d335luupugsy2.cloudfront.net/landing_page_templates/thank-you-page-kit/ebook.png",
-			"textButton": "Acessar a planilha",
-			"linkButton": "https://materiais.sonorizacaodeambientes.com.br/calculos-modais"
-		},
-		{
-			"title": "GUIA",
-			"subtitle": "Instalação de Som Ambiente",
-			"text": "Confira dicas para executar seu projeto de sonorização de ambientes com maior eficiência e qualidade.",
-			"image": "https://d335luupugsy2.cloudfront.net/landing_page_templates/thank-you-page-kit/template.png",
-			"textButton": "Acessar o infográfico",
-			"linkButton": "https://materiais.sonorizacaodeambientes.com.br/instalacao-som-ambiente"
-		},
-		{
-			"title": "PLANILHA",
-			"subtitle": "Instalação Acústica",
-			"text": "Acesse gratuitamente esta planilha e crie uma acústica perfeita nos seus projetos de sonorização de ambientes.",
-			"image": "https://d335luupugsy2.cloudfront.net/landing_page_templates/thank-you-page-kit/planilha.png",
-			"textButton": "Acessar a planilha",
-			"linkButton": "https://materiais.sonorizacaodeambientes.com.br/planilha-instalacao-acustica"
-		}
-	]
-};
+var $ = window.jQuery;
 
-function init() {
-	displayData(shuffle(data.ebooks));
+document.getElementById("calcBtn").addEventListener('click', function() {
+  var visitaMensal = document.getElementById('inputVisita').value;
+  var numeroConversao = document.getElementById('inputConversao').value;
+  var ticketMedio = document.getElementById('inputTicket').value;
+  var aumentoTaxa = 20 / 100;
+
+  authClient();
+  validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
+});
+
+function validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
+  if (visitaMensal && numeroConversao && ticketMedio && aumentoTaxa && validateUrl()) {
+    calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
+  } else {
+    var el = document.createElement("p");
+    el.classList.add('alert-text');
+    var textEl = document.createTextNode("Preencha todos os campos para seguir");
+    el.appendChild(textEl);
+    document.getElementsByClassName("box-form")[0].appendChild(el);
+  }
 }
 
-var shuffle = function (array) {
-	var currentIndex = array.length;
-	var temporaryValue, randomIndex;
+function validateUrl() {
+  var url = document.getElementById('inputURL').value;
+  var regex = /(www.)+\w+.(com)+|(.br)/g;
+  var data = {
+    "entity_type": "CONTACT",
+    "event_type": "WEBHOOK.CONVERTED",
+    "event_identifiers": ["iniciou-calculadora"],
+    "url": "https://diagnosti.co/calculadora-modelo/",
+    "http_method": "POST",
+    "include_relations": ["COMPANY", "CONTACT_FUNNEL"]
+  }
+  if (url.match(regex)) { 
+    return true;
+  }
+  return false;
+}
+function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
+  var taxaConversao = Number(numeroConversao) / Number(visitaMensal);
+  var faturamentoMensal = Number(ticketMedio) * Number(numeroConversao);
+  var novoFaturamentoMensal = visitaMensal * (taxaConversao * (1 + aumentoTaxa)) * ticketMedio;
+  var aumentoFaturamento = 12 * (novoFaturamentoMensal - faturamentoMensal);
 
-	while (0 !== currentIndex) {
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
+  displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento);
+}
 
-	return array;
+function displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento) {
+  document.getElementById('formCard').classList.add('d-none');
+  document.getElementById('resultCard').classList.remove('d-none');
 
-};
+  createFirstTable(visitaMensal, numeroConversao, ticketMedio);
+  createSecondTable(taxaConversao, faturamentoMensal);
+  createThirdTable(aumentoTaxa);
+  createFourthTable(aumentoFaturamento);
 
-function displayData(suffledArray) {
-	var $columns = Array.from(document.getElementsByClassName('col-sm'));
+  var data = {
+    "entity_type": "CONTACT",
+    "event_type": "WEBHOOK.CONVERTED",
+    "event_identifiers": ["finalizou-calculadora"],
+    "url": "https://diagnosti.co/calculadora-modelo/",
+    "http_method": "POST",
+    "include_relations": ["COMPANY", "CONTACT_FUNNEL"]
+  }
+}
 
-	for (ebook = 0; ebook < suffledArray.length; i++) {
-		$columns.forEach(function(column, ind) {
-			Array.from(column.children).forEach(function (tag, id) {
-				if (id === 0) { tag.src = ebook[].image; }
-				if (id === 1) { tag.innerHTML = ebook.title; }
-				if (id === 2) { tag.innerHTML = ebook.subtitle; }
-				if (id === 3) { tag.innerHTML = ebook.text; }
-				if (id === 4) { console.log(tag); }
-				return;
-			});
-			return;
-		});
-	}
+function createFirstTable(visitaMensal, numeroConversao, ticketMedio) {
+  var table = document.getElementsByTagName('table')[0];
+  var tr = document.createElement('tr');
+
+  for(i = 0; i < 3; i++) {
+    var td = document.createElement('td');
+    if (i === 0 ) td.innerText = visitaMensal;
+    if (i === 1 ) td.innerText = accounting.formatMoney(Number(numeroConversao), "R$ ", 2, ".", ",");
+    if (i === 2 ) td.innerText = accounting.formatMoney(Number(ticketMedio), "R$ ", 2, ".", ",");
+    tr.appendChild(td);
+  }
+
+  table.appendChild(tr);
+}
+
+function createSecondTable(taxaConversao, faturamentoMensal) {
+  var table = document.getElementsByTagName('table')[1];
+  var tr = document.createElement('tr');
+
+  for(i = 0; i < 2; i++) {
+    var td = document.createElement('td');
+    if (i === 0 ) td.innerText = taxaConversao.toFixed(2) + '%';
+    if (i === 1 ) td.innerText = accounting.formatMoney(Number(faturamentoMensal), "R$ ", 2, ".", ",");
+    tr.appendChild(td);
+  }
+
+  table.appendChild(tr);
+}
+
+function createThirdTable(aumentoTaxa) {
+  var table = document.getElementsByTagName('table')[2];
+  var tr = document.createElement('tr');
+  tr.style.textAlign = 'left';
+
+  var td = document.createElement('td');
+  td.classList.add('td-border');
+  td.innerText = aumentoTaxa * 100 + '%';
+  tr.appendChild(td);
+
+  table.appendChild(tr);
+}
+
+function createFourthTable(aumentoFaturamento) {
+  var table = document.getElementsByTagName('table')[3];
+  var tr = document.createElement('tr');
+  tr.style.textAlign = 'left';
+
+  var td = document.createElement('td');
+  td.innerText = accounting.formatMoney(Number(aumentoFaturamento), "R$ ", 2, ".", ",");
+  tr.appendChild(td);
+
+  table.appendChild(tr);
 }
