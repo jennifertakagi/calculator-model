@@ -1,38 +1,30 @@
 var $ = window.jQuery;
 
-document.getElementById("calcBtn").addEventListener('click', function() {
-  var visitaMensal = document.getElementById('inputVisita').value;
-  var numeroConversao = document.getElementById('inputConversao').value;
-  var ticketMedio = document.getElementById('inputTicket').value;
+document.getElementById("calcBtn").addEventListener('click', function(event) {
+  event.preventDefault();
+  var visitaMensal = $('#inputVisita').val();
+  var numeroConversao = $('#inputConversao').val();
+  var ticketMedio = $('#inputTicket').val();
   var aumentoTaxa = 20 / 100;
 
-  authClient();
   validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
 });
 
 function validateData(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
   if (visitaMensal && numeroConversao && ticketMedio && aumentoTaxa && validateUrl()) {
     calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa);
-  } else {
-    var el = document.createElement("p");
-    el.classList.add('alert-text');
-    var textEl = document.createTextNode("Preencha todos os campos para seguir");
-    el.appendChild(textEl);
-    document.getElementsByClassName("box-form")[0].appendChild(el);
+  } else if (!$('.alert-text')[0]){
+    var alertElement = document.createElement("p");
+    $(alertElement).addClass('alert-text');
+    $(alertElement).append(document.createTextNode("Preencha todos os campos para seguir"));
+    $(".box-form").append(alertElement);
   }
 }
 
 function validateUrl() {
-  var url = document.getElementById('inputURL').value;
+  var url = $('#inputURL').val();
   var regex = /(www.)+\w+.(com)+|(.br)/g;
-  var data = {
-    "entity_type": "CONTACT",
-    "event_type": "WEBHOOK.CONVERTED",
-    "event_identifiers": ["iniciou-calculadora"],
-    "url": "https://diagnosti.co/calculadora-modelo/",
-    "http_method": "POST",
-    "include_relations": ["COMPANY", "CONTACT_FUNNEL"]
-  }
+  
   if (url.match(regex)) { 
     return true;
   }
@@ -48,74 +40,14 @@ function calculateROI(visitaMensal, numeroConversao, ticketMedio, aumentoTaxa) {
 }
 
 function displayData(visitaMensal, numeroConversao, ticketMedio, taxaConversao, faturamentoMensal, aumentoTaxa, aumentoFaturamento) {
-  document.getElementById('formCard').classList.add('d-none');
-  document.getElementById('resultCard').classList.remove('d-none');
+  $('#formCard').addClass('d-none');
+  $('#resultCard').removeClass('d-none');
 
-  createFirstTable(visitaMensal, numeroConversao, ticketMedio);
-  createSecondTable(taxaConversao, faturamentoMensal);
-  createThirdTable(aumentoTaxa);
-  createFourthTable(aumentoFaturamento);
-
-  var data = {
-    "entity_type": "CONTACT",
-    "event_type": "WEBHOOK.CONVERTED",
-    "event_identifiers": ["finalizou-calculadora"],
-    "url": "https://diagnosti.co/calculadora-modelo/",
-    "http_method": "POST",
-    "include_relations": ["COMPANY", "CONTACT_FUNNEL"]
-  }
-}
-
-function createFirstTable(visitaMensal, numeroConversao, ticketMedio) {
-  var table = document.getElementsByTagName('table')[0];
-  var tr = document.createElement('tr');
-
-  for(i = 0; i < 3; i++) {
-    var td = document.createElement('td');
-    if (i === 0 ) td.innerText = visitaMensal;
-    if (i === 1 ) td.innerText = accounting.formatMoney(Number(numeroConversao), "R$ ", 2, ".", ",");
-    if (i === 2 ) td.innerText = accounting.formatMoney(Number(ticketMedio), "R$ ", 2, ".", ",");
-    tr.appendChild(td);
-  }
-
-  table.appendChild(tr);
-}
-
-function createSecondTable(taxaConversao, faturamentoMensal) {
-  var table = document.getElementsByTagName('table')[1];
-  var tr = document.createElement('tr');
-
-  for(i = 0; i < 2; i++) {
-    var td = document.createElement('td');
-    if (i === 0 ) td.innerText = taxaConversao.toFixed(2) + '%';
-    if (i === 1 ) td.innerText = accounting.formatMoney(Number(faturamentoMensal), "R$ ", 2, ".", ",");
-    tr.appendChild(td);
-  }
-
-  table.appendChild(tr);
-}
-
-function createThirdTable(aumentoTaxa) {
-  var table = document.getElementsByTagName('table')[2];
-  var tr = document.createElement('tr');
-  tr.style.textAlign = 'left';
-
-  var td = document.createElement('td');
-  td.classList.add('td-border');
-  td.innerText = aumentoTaxa * 100 + '%';
-  tr.appendChild(td);
-
-  table.appendChild(tr);
-}
-
-function createFourthTable(aumentoFaturamento) {
-  var table = document.getElementsByTagName('table')[3];
-  var tr = document.createElement('tr');
-  tr.style.textAlign = 'left';
-
-  var td = document.createElement('td');
-  td.innerText = accounting.formatMoney(Number(aumentoFaturamento), "R$ ", 2, ".", ",");
-  tr.appendChild(td);
-
-  table.appendChild(tr);
+  $('#visitas').text(visitaMensal);
+  $('#conversoes').text(numeroConversao);
+  $('#ticket').text(accounting.formatMoney(Number(ticketMedio), "R$ ", 2, ".", ","));
+  $('#taxaConversao').text(taxaConversao.toFixed(2) + '%');
+  $('#faturamento').text(accounting.formatMoney(Number(faturamentoMensal), "R$ ", 2, ".", ","));
+  $('#aumentoConversao').text(aumentoTaxa * 100 + '%');
+  $('#aumentoAnual').text(accounting.formatMoney(Number(aumentoFaturamento), "R$ ", 2, ".", ","));
 }

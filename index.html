@@ -12,23 +12,23 @@
   <body>
     <header>
       <nav class="nav justify-content-center">
-        <img src="./assets/images/logo_branca.png" alt="Logo Dialetto" width="15%" height="20%">
+        <img src="./assets/images/logo_branca.png" alt="Logo Dialetto" class="logo">
       </nav>
     </header>
-    <main class="mb-5" id ="formCard">
+    <main class="mb-5" id="formCard">
       <section class="row m-0">
         <div class="col-md-6">
-            <img src="./assets/images/calculator_image.png" alt="Ilustração de calculadora" width="115%">
-          </div>
-          <div class="col-md-6 mx-auto mt-15">
-            <h1>Calculadora de ROI</h1>
-            <p>Bacon ipsum dolor amet corned beef pancetta pork chop meatloaf, 
-              bresaola leberkas shank pig sausage spare ribs cupim capicola ground.
-            </p>
-          </div>
+          <img src="./assets/images/calculator_image.png" alt="Ilustração de calculadora" width="115%">
+        </div>
+        <div class="col-md-6 mx-auto mt-15">
+          <h1>Calculadora de ROI</h1>
+          <p>Bacon ipsum dolor amet corned beef pancetta pork chop meatloaf, 
+            bresaola leberkas shank pig sausage spare ribs cupim capicola ground.
+          </p>
+        </div>
       </section>
       <section class="row m-0">
-        <div class="col-md-8 card box-form">
+        <form class="col-md-8 card box-form" action="">
           <legend>Use a calculadora abaixo para descobrir o possível 
             retorno financeiro que a Otimização de Conversão da Dialetto 
             trará para você:
@@ -36,60 +36,63 @@
           <div class="form-group">
               <label for="inputEmail">Qual seu e-mail?</label>
               <input type="email" class="form-control" id="inputEmail" placeholder="">
-              <label for="inputURL">Qual é a URL do seu site?</label>
-              <input type="text" class="form-control" id="inputURL" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="inputVisita">Em média, quantas visitas seu site recebe mensalmente?</label>
-              <input type="number" class="form-control" id="inputVisita" placeholder="">
-            </div>
-            <div class="form-group">
-              <label for="inputConversao">Quantas conversões (vendas, leads, etc.) seu site gera mensalmente?</label>
-              <input type="number" class="form-control" id="inputConversao" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="inputTicket">Qual seu Ticket Médio (seu faturamento ou Lifetime Value por conversão)?</label>
-                <input type="number" class="form-control" id="inputTicket" placeholder="">
-            </div>
-            <button id="calcBtn" type="submit" class="btn btn-lg btn-block btn-custom-1">Calcular</button>
-        </div>
+          </div>
+          <div class="form-group">
+            <label for="inputURL">Qual é a URL do seu site?</label>
+            <input type="text" class="form-control" id="inputURL" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="inputVisita">Em média, quantas visitas seu site recebe mensalmente?</label>
+            <input type="number" class="form-control" id="inputVisita" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="inputConversao">Quantas conversões (vendas, leads, etc.) seu site gera mensalmente?</label>
+            <input type="number" class="form-control" id="inputConversao" placeholder="">
+          </div>
+          <div class="form-group">
+              <label for="inputTicket">Qual seu Ticket Médio (seu faturamento ou Lifetime Value por conversão)?</label>
+              <input type="number" class="form-control" id="inputTicket" placeholder="">
+          </div>
+          <button id="calcBtn" type="submit" class="btn btn-lg btn-block btn-custom-1">Calcular</button>
+        </form>
       </section>
     </main>
-    <main class="m-5 d-none" id ="resultCard">
+    <main class="m-5 d-none" id="resultCard">
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center mb-5">
           Esses são os resultados financeiros que o nosso trabalho de CRO pode gerar para você:
         </h2>
       </div>
       <section class="card col-md-10 offset-md-1 box-result">
-        <table class="text-center">
-          <tr class="title-color">
-            <td>suas visitas mensais</td>
-            <td>suas conversões mensais</td>
-            <td>seu ticket médio</td>
-          </tr>
-        </table>
-        <table class="text-center mt-5">
-          <tr class="title-color">
-            <td>sua taxa de conversão é de</td>
-            <td>seu faturamento mensal é de</td>
-          </tr>
-        </table>
-        <div class="row mt-5-0">
-          <div class="col-md-6">
-            <img src="./assets/images/result_image.png" alt="Ilustração de calculadora" width="100%">
+        <div class="row text-center">
+          <div class="col-lg-4">
+            <h2 class="title-color">suas visitas mensais</h2>
+            <span id="visitas">0</span>
           </div>
-          <div class="col-md-6">
-            <table class="text-center">
-                <tr>
-                  <td class="text-results">Se, com o nosso trabalho de CRO, aumentarmos sua taxa de conversão em:</td>
-                </tr>
-              </table>
-              <table class="text-center">
-                  <tr class="mt-2">
-                    <td class="text-results">Você poderá ter um aumento no seu faturamento anual de…</td>
-                  </tr>
-              </table>
+          <div class="col-lg-4">
+            <h2 class="title-color">suas conversões mensais</h2>
+            <span id="conversoes">0</span>
+          </div>
+          <div class="col-lg-4">
+            <h2 class="title-color">seu ticket médio</h2>
+            <span id="ticket">R$ 0,00</span>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="title-color mt-20">sua taxa de conversão é de</h2>
+            <span id="taxaConversao">0 %</span>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="title-color mt-20">seu faturamento mensal é de </h2>
+            <span id="faturamento">R$ 0</span>
+          </div>
+          <div class="col-lg-6">
+            <img class="img-fluid mx-auto" alt="Ilustração de calculadora" src="./assets/images/result_image.png">
+          </div>
+          <div class="col-lg-5">
+            <p class="text-results mt-20">Se, com o nosso trabalho de CRO, aumentarmos sua taxa de conversão em:</p>
+            <p class="text-left" id="aumentoConversao">0 %</p>
+            <p class="text-results">Você poderá ter um aumento no seu <strong>faturamento anual de…</strong></p>
+            <p class="text-left" id="aumentoAnual">R$ 0</p>
           </div>
         </div>
       </section>

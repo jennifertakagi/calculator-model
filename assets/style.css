@@ -10,6 +10,8 @@ html, body {
 
 nav, footer { background-color: #0069a6; background-image: linear-gradient(to right, #0069a6 , #0099a8); padding: 1% 0; }
 
+.logo { width: 115px; height: 40px; padding: 5px 0;}
+
 h1 { color: #0099a8; }
 
 .box-form { padding: 5%; margin: -10% auto 5%; }
@@ -24,15 +26,25 @@ label { font-weight: 800; }
 
 .btn-custom-1:hover { background-color: #0069a6; color: #fff; }
 
-.box-result { padding: 5%; margin-bottom: 10%; }
+.box-result { 
+  text-transform: uppercase; 
+  font-weight: 900; 
+  font-size: 2.5rem; 
+  padding: 5%; 
+  margin-bottom: 10%;
+}
 
-td { text-transform: uppercase; font-weight: 900; font-size: 2.5rem; }
+.title-color { color:#0099a8; font-weight: 700; font-size: 1.1rem; }
 
-.title-color > td { color:#0099a8; font-weight: 700; font-size: 1.1rem; }
+.text-results { 
+  font-size: 1.1rem; 
+  text-transform: none; 
+  text-align: left; 
+  height: 80px;
+  margin-bottom: 0;
+}
 
-.text-results { font-size: 1.1rem; text-transform: none; text-align: left; height: 80px;}
-
-.td-border { border-left: 3px black solid; padding-left: 3%; }
+#aumentoConversao { text-align: left; border-left: 4px solid #000; padding-left: 10px; }
 
 footer { position: fixed; width: 100%; bottom: 0; }
 
@@ -41,16 +53,11 @@ footer { position: fixed; width: 100%; bottom: 0; }
 /* helpers */
 .mt-15 { margin-top: 15%; }
 
-.mt--10 { margin-top: -10%; }
+.mt-20 { margin-top: 20px; }
 
 .mb-5 { margin-bottom: 5%; }
 
 .m-5 { margin: 5%; }
-
-.p-5 { padding: 5%; }
-
-.mt-5-0 { margin: 5% 0 0; }
-
 
 /* #0069a6 azul escuro */
 /* #0099a8 turquesa escuro */
