@@ -1,18 +1,16 @@
 # Calculator Model to ROI
 
-This is a landing page with a calculator, using HTML, Bootstrap and JavaScript.
-A simple freelance work.
+This is a landing page with a calculator, available on Github Pages: https://jennifertakagi.github.io/calculator-model/
 
-## Available on Github Pages
+## Getting Started
 
-https://jennifertakagi.github.io/calculator-model/
+Just clone the project and the magic will happen!
 
-### Done
+## Built With
 
-- Simple layout
-- Get user's inputs
-- Calculate ROI
+* [Boostrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) - The CSS framework used
+* [Vanilla Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - The language used
 
-### To do
+## Authors
 
-- Refactor code
+* **Jennifer Takagi** - *Initial work*
