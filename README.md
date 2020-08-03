@@ -1,6 +1,6 @@
 # Calculator Model to ROI
 
-This is a landing page with a calculator, available on Github Pages: https://jennifertakagi.github.io/calculator-model/
+This is a landing page with a calculator, available on Github Pages: https://jennifertakagi.github.io/calculator-model-js/.
 
 ## Getting Started
 
