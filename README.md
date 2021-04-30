@@ -93,8 +93,6 @@ Calculate ROI in desktop and mobile device.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[Documentation](https://example.com)_
-
 <p align="left">
    <img src="docs/calculator-model.gif" />
 </p>
